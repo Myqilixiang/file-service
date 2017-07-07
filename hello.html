@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        var result;
+        var path = "F:/test";
+
+        function send() {
+            /**
+             * 模块符合同文件服务进行通信获取资源
+             */
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        result = xhr.responseText;
+                        console.log("request resource success");
+                        console.log(result)
+                    } else {
+                        console.log("request resource faild");
+                    }
+                }
+            };
+            xhr.onerror = (target, error) => reject(target, error);
+            xhr.open("POST", "http://127.0.0.1:1334/", false);
+            xhr.setRequestHeader("Content-type", "application/text");
+            xhr.send(path, function(a) {
+                console.log("data" + a)
+            });
+
+        };
+    </script>
+    <button onclick="send()">click</button>
+</body>
+
+</html>
