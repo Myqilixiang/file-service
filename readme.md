@@ -2,4 +2,37 @@
 使用后兼容node V6+解决方法：https://segmentfault.com/a/1190000006864073
 前端调用接口使用axios采用promise方式实现标准化。
 潜在问题
+文件操作http://www.cnblogs.com/mangoxin/p/5664615.html
 1.前端使用的jstree初始化函数智能执行一次，需要查询api调用相关更新函数
+定义文件请求的传参形式
+{
+    opt："",//操作类型
+    data:{
+        type:"",//具体的操作类型，如文件或文件夹的创建
+        path:""//实际传递的数据
+    }
+}
+1、文件夹创建
+{
+    opt："create",//操作类型
+    data:{
+        type:"file",//具体的操作类型，如文件或文件夹的创建
+        path:"F:/test"//实际传递的数据
+    }
+}
+2、重命名
+{
+    opt："create",//操作类型
+    data:{
+        type:"F:/test",//此时借用type存储原来的文件名
+        path:"F:/new_test"//新名称
+    }
+}
+3、删除文件
+{
+    opt："create",//操作类型
+    data:{
+        type:"file",//删除的类型，文件或者文件夹
+        path:"F:/new_test"//需要删除的文件路径
+    }
+}

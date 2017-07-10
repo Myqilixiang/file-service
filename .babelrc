@@ -1,0 +1,9 @@
+{
+    "presets": [
+        ["es2015", { "modules": false }],
+        "stage-2"
+    ],
+    //兼容node V6+使用的插件
+    "plugins": ["transform-es2015-modules-commonjs"],
+    "comments": false
+}

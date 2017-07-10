@@ -3,8 +3,7 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 var util = require('util');
-var path = 'F:/Program Files/csd开发/IDE/ide/service/test';
-import readDir from './get-tree';
+import dispath from './dispatch';
 app.listen(1334, "127.0.0.1");
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -19,11 +18,12 @@ app.all('*', function(req, res, next) {
 app.post('*', function(req, res) {
     let result;
     req.on('data', function(data) {
-        result = readDir.explorer(data.toString());
+        let _data = JSON.parse(data.toString());
+        // 将传入的请求分发下去
+        result = dispath(_data);
         res.send(result);
         res.end();
     });
 })
-
 
 console.log("listen ......");
